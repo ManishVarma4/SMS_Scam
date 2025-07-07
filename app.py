@@ -1,19 +1,14 @@
 import streamlit as st
 import pickle
-import nltk
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 import string
-# nltk.download('punkt')
-# nltk.download('stopwords')
-
 ps = PorterStemmer()
 
 import re
 
 def transform_text(text):
     text = text.lower()
-    # Use regex to extract words instead of nltk.word_tokenize()
     text = re.findall(r'\b\w+\b', text)
 
     y = []
@@ -26,8 +21,7 @@ def transform_text(text):
 # Load vectorizer and model
 tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
 model = pickle.load(open('model (1).pkl', 'rb'))
-
-# UI
+#UI
 st.title('Email/SMS Spam Classifier')
 
 user_input = st.text_input('Enter the Received SMS/Email Message')
